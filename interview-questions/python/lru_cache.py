@@ -6,14 +6,12 @@ class Node:
 
 class LRUCache:
 
-    head = None
-    tail = None
-    nodes = {}
-    cap = 0
-
     # @param capacity, an integer
     def __init__(self, capacity):
-        cap = capacity
+        self.cap = capacity
+        self.head = None
+        self.tail = None
+        self.nodes = {}
 
     # @return an integer
     def get(self, key):
@@ -35,6 +33,7 @@ class LRUCache:
             v.value = value
         else:
             if self.tail is not None and len(self.nodes) >= self.cap:
+                # print("EVICT ENTRY ", self.nodes.keys(), self.tail, self.cap, len(self.nodes))
                 self.nodes.pop(self.tail.key, None)
                 self.deleteNode(self.tail)
             
