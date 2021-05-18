@@ -40,5 +40,21 @@ func rodGainTab(prices []int, length int) int {
 	dp[0] = 0
 
 	//transition
-	//
+	//gain[i] = max(p[a] + gain[i-a]) - a => all prices
+
+	//fill table
+	for l := 1; l <= length; l++ {
+		dp[l] = math.MinInt32
+		for a := 0; a < len(prices); a++ {
+			pl := a + 1
+			if l-pl < 0 {
+				continue
+			}
+			v := prices[a] + dp[l-pl]
+			if v > dp[l] {
+				dp[l] = v
+			}
+		}
+	}
+	return dp[length]
 }

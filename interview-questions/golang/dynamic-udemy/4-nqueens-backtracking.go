@@ -18,6 +18,7 @@ func nqueensSolve(size int, nqueens int, y int, cand []tup) (bool, []tup) {
 	//is valid (goal)
 	if !isValidQueens(cand, nqueens) {
 		// fmt.Printf("INVALID %v\n", cand)
+		//give up this solution path sooner as possible
 		return false, cand
 	}
 	if len(cand) == nqueens {
